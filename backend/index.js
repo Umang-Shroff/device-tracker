@@ -16,7 +16,10 @@ app.set("view engine", "ejs");
 app.set(express.static(path.join(__dirname, "public")));
 
 io.on("connetion", function(socket){
-    
+    socket.on("send-location", function(data){
+        io.emit("receive-location", {id: socket.id, ...data});
+    })
+    console.log("Socket connected")
 })
 
 app.get("/", (req,res)=>{
