@@ -3,6 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 const socketio = require("socket.io");
 const http = require("http");
+const path = require("path");
 
 const server = http.createServer(app);
 
@@ -14,8 +15,12 @@ const PORT = process.env.PORT || 5000
 app.set("view engine", "ejs");
 app.set(express.static(path.join(__dirname, "public")));
 
+io.on("connetion", function(socket){
+    
+})
+
 app.get("/", (req,res)=>{
-    res.send("Hello world");
+    res.render("index");
 })
 
 server.listen(PORT, ()=>{
